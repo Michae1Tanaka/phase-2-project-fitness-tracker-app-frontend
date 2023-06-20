@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import WorkoutCard from "./WorkoutCard";
+import { v4 as uuid } from "uuid";
 
 function HomeWorkoutsPage() {
   const [workoutsDisplay, setWorkoutsDisplay] = useState([]);
@@ -14,7 +16,13 @@ function HomeWorkoutsPage() {
     }
     fetchData();
   }, []);
-  return <div>{workoutsDisplay.map((workout) => console.log(workout))}</div>;
+  return (
+    <div>
+      {workoutsDisplay.map((workout) => (
+        <WorkoutCard key={uuid()} workout={workout} />
+      ))}
+    </div>
+  );
 }
 
 export default HomeWorkoutsPage;
