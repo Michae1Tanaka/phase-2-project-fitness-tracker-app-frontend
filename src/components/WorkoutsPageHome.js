@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import WorkoutCard from "./WorkoutCard";
 import { v4 as uuid } from "uuid";
+import { Card } from "semantic-ui-react";
 
-function HomeWorkoutsPage() {
+function WorkoutsPageHome() {
   const [workoutsDisplay, setWorkoutsDisplay] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -18,11 +19,14 @@ function HomeWorkoutsPage() {
   }, []);
   return (
     <div>
-      {workoutsDisplay.map((workout) => (
-        <WorkoutCard key={uuid()} workout={workout} />
-      ))}
+      <h1 style={{ textAlign: "center" }}>Bicep Workouts</h1>
+      <Card.Group itemsPerRow="3">
+        {workoutsDisplay.map((workout) => (
+          <WorkoutCard key={uuid()} workout={workout} />
+        ))}
+      </Card.Group>
     </div>
   );
 }
 
-export default HomeWorkoutsPage;
+export default WorkoutsPageHome;

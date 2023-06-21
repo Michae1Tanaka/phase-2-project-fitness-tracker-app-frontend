@@ -1,5 +1,5 @@
 import React from "react";
-import HomeWorkoutsPage from "./HomeWorkoutsPage";
+import HomeWorkoutsPage from "./WorkoutsPageHome";
 import "../css/App.css";
 
 function App() {
