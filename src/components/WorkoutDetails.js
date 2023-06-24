@@ -11,10 +11,11 @@ function WorkoutDetails({ workout }) {
 
   return (
     <>
-      <h3 style={{ flex: "1", textAlign: "center", margin: "0 10%" }}>Weight: {workout.weight}lbs</h3>
-      <h3 style={{ flex: "1", textAlign: "center", margin: "0 10%" }}>Reps: {workout.reps}</h3>
-      <h3 style={{ flex: "1", textAlign: "center", margin: "0 10%" }}>Sets: {workout.sets}</h3>
-      <h3 style={{ flex: "1", textAlign: "center", margin: "0 10%" }}>
+      <h3 style={{ flex: "1", textAlign: "center", margin: "0 5%" }}>Weight: {workout.weight}lbs</h3>
+      <h3 style={{ flex: "1", textAlign: "center", margin: "0 5%" }}>Reps: {workout.reps}</h3>
+      <h3 style={{ flex: "1", textAlign: "center", margin: "0 5%" }}>Sets: {workout.sets}</h3>
+      <h3 style={{ flex: "1", textAlign: "center", margin: "0 5%" }}>Minutes: {workout.duration}</h3>
+      <h3 style={{ flex: "1", textAlign: "center", margin: "0 5%" }}>
         Volume: {volumeEquation(workout.reps, workout.weight, workout.sets)}lbs
       </h3>
     </>
