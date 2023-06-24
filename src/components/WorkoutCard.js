@@ -10,7 +10,7 @@ function WorkoutCard({ workout }) {
     <Card style={{ border: "black 2px solid" }}>
       <Card.Content style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ flex: "1 0 auto" }}>
-          <Card.Header style={{ textAlign: "center" }}>{workout.name}</Card.Header>
+          <h2 style={{ textAlign: "center" }}>{workout.name}</h2>
           <div style={{ height: "200px", display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Image
               style={{
