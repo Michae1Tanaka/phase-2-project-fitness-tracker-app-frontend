@@ -6,6 +6,14 @@ function WorkoutCard({ workout }) {
   const primaryMusclesHitMap = workout.musclesHit.primary.join(", ");
   const secondaryMusclesHitMap = workout.musclesHit.secondary.join(", ");
 
+  function handleEditButton(e) {
+    console.log(e.target);
+  }
+
+  function handleDeleteButton(e) {
+    console.log(e.target);
+  }
+
   return (
     <Card style={{ border: "black 2px solid" }}>
       <Card.Content style={{ display: "flex", flexDirection: "column" }}>
@@ -36,10 +44,10 @@ function WorkoutCard({ workout }) {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green" style={{ marginRight: "2px", border: "2px solid" }}>
+          <Button onClick={handleEditButton} basic color="green" style={{ marginRight: "2px", border: "2px solid" }}>
             <strong>Edit Workout</strong>
           </Button>
-          <Button basic color="red" style={{ border: "2px solid" }}>
+          <Button onClick={handleDeleteButton} basic color="red" style={{ border: "2px solid" }}>
             <strong>Delete Workout</strong>
           </Button>
         </div>
