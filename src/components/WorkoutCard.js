@@ -3,8 +3,11 @@ import { Button, Card, Image } from "semantic-ui-react";
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutForm from "./WorkoutForm";
 
-function WorkoutCard({ workout }) {
+function WorkoutCard({ workout, setWorkoutsDisplay, workoutsDisplay }) {
+  const primaryMusclesHitMap = workout.musclesHit.primary.join(", ");
+  const secondaryMusclesHitMap = workout.musclesHit.secondary.join(", ");
   const [editButtonClicked, setEditButtonClicked] = useState(false);
+
   const [inputText, setInputText] = useState({
     name: workout.name,
     muscleGroup: workout.muscleGroup,
@@ -19,9 +22,6 @@ function WorkoutCard({ workout }) {
     },
   });
 
-  const primaryMusclesHitMap = workout.musclesHit.primary.join(", ");
-  const secondaryMusclesHitMap = workout.musclesHit.secondary.join(", ");
-
   function handleEditButton() {
     setEditButtonClicked(!editButtonClicked);
   }
@@ -32,7 +32,14 @@ function WorkoutCard({ workout }) {
   return (
     <Card style={{ border: "black 2px solid" }}>
       {editButtonClicked ? (
-        <WorkoutForm workout={workout} onUndo={handleEditButton} inputText={inputText} setInputText={setInputText} />
+        <WorkoutForm
+          workout={workout}
+          onUndo={handleEditButton}
+          setWorkoutsDisplay={setWorkoutsDisplay}
+          workoutsDisplay={workoutsDisplay}
+          inputText={inputText}
+          setInputText={setInputText}
+        />
       ) : (
         <>
           <Card.Content style={{ display: "flex", flexDirection: "column" }}>

@@ -1,11 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "semantic-ui-react";
 
-function WorkoutForm({ workout, onUndo, inputText, setInputText }) {
+function WorkoutForm({ workout, onUndo, inputText, setInputText, setWorkoutsDisplay, workoutsDisplay }) {
   function handleEditFormSubmit(e) {
     e.preventDefault();
-    console.log(inputText);
+    let primaryArray = Array.isArray(inputText.musclesHit.primary)
+      ? inputText.musclesHit.primary
+      : inputText.musclesHit.primary.split(",").map((str) => str.trim());
+    let secondaryArray = Array.isArray(inputText.musclesHit.secondary)
+      ? inputText.musclesHit.secondary
+      : inputText.musclesHit.secondary.split(",").map((str) => str.trim());
+
+    const updatedInput = {
+      ...inputText,
+      musclesHit: {
+        primary: primaryArray,
+        secondary: secondaryArray,
+      },
+    };
+
+    fetch(`http://localhost:3000/workouts/${workout.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...updatedInput }),
+    })
+      .then((r) => r.json())
+      .then((updatedWorkout) => {
+        setWorkoutsDisplay((workoutsDisplay) =>
+          workoutsDisplay.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout))
+        );
+      });
   }
+
+  useEffect(() => {
+    setInputText({
+      name: workout.name,
+      muscleGroup: workout.muscleGroup,
+      weight: workout.weight,
+      reps: workout.reps,
+      sets: workout.sets,
+      duration: workout.duration,
+      image: workout.image,
+      musclesHit: {
+        primary: workout.musclesHit.primary,
+        secondary: workout.musclesHit.secondary,
+      },
+    });
+  }, [workout]);
 
   function onEditChange(e) {
     const { name, value } = e.target;

@@ -9,7 +9,14 @@ function WorkoutsPageHome() {
   const workoutGroups = ["Bicep", "Back", "Chest", "Tricep", "Shoulder", "Leg"].reduce((groups, group) => {
     groups[group] = workoutsDisplay
       .filter((workout) => workout.muscleGroup === group)
-      .map((workout) => <WorkoutCard key={uuid()} workout={workout} />);
+      .map((workout) => (
+        <WorkoutCard
+          key={uuid()}
+          workout={workout}
+          setWorkoutsDisplay={setWorkoutsDisplay}
+          workoutsDisplay={workoutsDisplay}
+        />
+      ));
     return groups;
   }, {});
 
