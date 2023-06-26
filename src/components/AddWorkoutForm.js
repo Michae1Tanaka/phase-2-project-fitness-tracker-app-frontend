@@ -11,33 +11,149 @@ const options = [
   { key: "l", text: "Legs", value: "Leg" },
 ];
 
-const AddWorkout = () => {
-  const [value, setValue] = useState("");
-
-  const handleChange = (e, { value }) => setValue(value);
+function AddWorkout() {
+  const [value, setValue] = useState({
+    name: "",
+    muscleGroup: "",
+    weight: "",
+    reps: "",
+    sets: "",
+    duration: "",
+    date: "",
+    notes: [],
+    image: "",
+    musclesHit: {
+      primary: [],
+      secondary: [],
+    },
+  });
+  function handleChange(e, { name, value }) {
+    if (name.includes(".")) {
+      const [key, subkey] = name.split(".");
+      setValue((prevValue) => ({
+        ...prevValue,
+        [key]: { ...prevValue[key], [subkey]: value },
+      }));
+    } else {
+      setValue((prevValue) => ({ ...prevValue, [name]: value }));
+    }
+  }
 
   return (
     <Form>
       <Form.Group widths="equal">
-        <Form.Input fluid label="Workout Name" placeholder="Workout Name" />
-        <Form.Select fluid label="Select Muscle Group" options={options} placeholder="Muscle Group" />
+        <Form.Input
+          fluid
+          required
+          name="name"
+          label="Workout Name"
+          placeholder="Workout Name"
+          onChange={handleChange}
+          value={value.name}
+        />
+        <Form.Select
+          fluid
+          required
+          name="muscleGroup"
+          label="Select Muscle Group"
+          options={options}
+          placeholder="Muscle Group"
+          onChange={handleChange}
+          value={value.muscleGroup}
+        />
       </Form.Group>
       <Form.Group widths="4">
-        <Form.Input fluid label="Weight" placeholder="Weight" />
-        <Form.Input fluid label="Reps" placeholder="Reps" />
-        <Form.Input fluid label="Sets" placeholder="Sets" />
-        <Form.Input fluid label="Duration" placeholder="Duration" />
+        <Form.Input
+          fluid
+          required
+          name="weight"
+          type="number"
+          label="Weight"
+          placeholder="Weight"
+          onChange={handleChange}
+          value={value.weight}
+        />
+        <Form.Input
+          fluid
+          required
+          name="reps"
+          type="number"
+          label="Reps"
+          placeholder="Reps"
+          onChange={handleChange}
+          value={value.reps}
+        />
+        <Form.Input
+          fluid
+          required
+          name="sets"
+          type="number"
+          label="Sets"
+          placeholder="Sets"
+          onChange={handleChange}
+          value={value.sets}
+        />
+        <Form.Input
+          fluid
+          required
+          name="duration"
+          type="number"
+          label="Duration"
+          placeholder="Duration"
+          onChange={handleChange}
+          value={value.duration}
+        />
       </Form.Group>
       <Form.Group widths="4">
-        <Form.Input fluid label="Primary Muscle(s) Hit" placeholder="Primary Muscle(s) Hit" />
-        <Form.Input fluid label="Secondary Muscle(s) Hit" placeholder="Secondary Muscle(s) Hit" />
-        <Form.Input fluid label="Image" placeholder="Image Url" />
-        <Form.Input fluid label="Date" placeholder="Date" />
+        <Form.Input
+          fluid
+          required
+          name="musclesHit.primary"
+          label="Primary Muscle(s) Hit"
+          placeholder="Primary Muscle(s) Hit"
+          onChange={handleChange}
+          value={value.musclesHit.primary}
+        />
+        <Form.Input
+          fluid
+          required
+          name="musclesHit.secondary"
+          label="Secondary Muscle(s) Hit"
+          placeholder="Secondary Muscle(s) Hit"
+          onChange={handleChange}
+          value={value.musclesHit.secondary}
+        />
+        <Form.Input
+          fluid
+          required
+          name="image"
+          label="Image"
+          placeholder="Image Url"
+          onChange={handleChange}
+          value={value.image}
+        />
+        <Form.Input
+          fluid
+          required
+          name="date"
+          label="Date"
+          placeholder="01/01/2023"
+          onChange={handleChange}
+          value={value.date}
+        />
       </Form.Group>
-      <Form.Input fluid label="Notes" placeholder="Notes For Workouts" />
+      <Form.Input
+        fluid
+        required
+        name="notes"
+        label="Notes"
+        placeholder="Notes For Workouts"
+        onChange={handleChange}
+        value={value.notes}
+      />
       <Form.Button>Submit</Form.Button>
     </Form>
   );
-};
+}
 
 export default AddWorkout;
