@@ -3,7 +3,7 @@ import HomeWorkoutsPage from "./WorkoutsPageHome";
 import "../css/App.css";
 import NavBar from "./NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { WorkoutProvider } from "../context/WorkoutContext";
+import { WorkoutProvider } from "../context/WorkoutContextProvider";
 
 function App() {
   return (

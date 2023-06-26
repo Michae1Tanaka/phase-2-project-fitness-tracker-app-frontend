@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { Button, Card, Image } from "semantic-ui-react";
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutForm from "./WorkoutForm";
-import { WorkoutContext } from "../context/WorkoutContext";
+import { WorkoutContext } from "../context/WorkoutContextProvider";
 
 function WorkoutCard({ workout }) {
-  const { setWorkouts } = useContext(WorkoutContext);
+  const { setFilteredWorkouts } = useContext(WorkoutContext);
   const primaryMusclesHitMap = workout.musclesHit.primary.join(", ");
   const secondaryMusclesHitMap = workout.musclesHit.secondary.join(", ");
   const [editButtonClicked, setEditButtonClicked] = useState(false);
@@ -36,7 +36,7 @@ function WorkoutCard({ workout }) {
     })
       .then((r) => r.json())
       .then(() => {
-        setWorkouts((prevWorkoutsDisplay) => {
+        setFilteredWorkouts((prevWorkoutsDisplay) => {
           return prevWorkoutsDisplay.filter((prevWorkout) => prevWorkout.id !== workout.id);
         });
       });

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { Button } from "semantic-ui-react";
-import { WorkoutContext } from "../context/WorkoutContext";
+import { WorkoutContext } from "../context/WorkoutContextProvider";
 
 function WorkoutForm({ workout, onUndo, inputText, setInputText }) {
-  const { setWorkouts } = useContext(WorkoutContext);
+  const { setFilteredWorkouts } = useContext(WorkoutContext);
 
   function handleEditFormSubmit(e) {
     e.preventDefault();
@@ -31,7 +31,7 @@ function WorkoutForm({ workout, onUndo, inputText, setInputText }) {
     })
       .then((r) => r.json())
       .then((updatedWorkout) => {
-        setWorkouts((workouts) =>
+        setFilteredWorkouts((workouts) =>
           workouts.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout))
         );
       });

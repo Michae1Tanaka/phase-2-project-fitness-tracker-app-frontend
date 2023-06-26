@@ -4,6 +4,8 @@ const WorkoutContext = React.createContext();
 
 const WorkoutProvider = ({ children }) => {
   const [workouts, setWorkouts] = useState([]);
+  const [filteredWorkouts, setFilteredWorkouts] = useState(workouts);
+  const [activeItem, setActiveItem] = useState("home");
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -18,6 +20,12 @@ const WorkoutProvider = ({ children }) => {
     fetchWorkouts();
   }, []);
 
-  return <WorkoutContext.Provider value={{ workouts, setWorkouts }}>{children}</WorkoutContext.Provider>;
+  return (
+    <WorkoutContext.Provider
+      value={{ workouts, setWorkouts, filteredWorkouts, setFilteredWorkouts, activeItem, setActiveItem }}
+    >
+      {children}
+    </WorkoutContext.Provider>
+  );
 };
 export { WorkoutContext, WorkoutProvider };
