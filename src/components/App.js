@@ -3,20 +3,20 @@ import HomeWorkoutsPage from "./WorkoutsPageHome";
 import "../css/App.css";
 import NavBar from "./NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { WorkoutProvider } from "../context/WorkoutContext";
 
 function App() {
   return (
     <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<HomeWorkoutsPage />} />
-        <Route path="/workouts" element={<HomeWorkoutsPage />} />
-      </Routes>
+      <WorkoutProvider>
+        <NavBar />
+        <Routes>
+          <Route exact path="/" element={<HomeWorkoutsPage />} />
+          <Route exact path="/workouts" element={<HomeWorkoutsPage />} />
+        </Routes>
+      </WorkoutProvider>
     </Router>
   );
 }
 
 export default App;
-//imported react router dom
-//sets routes and navBar.
-//begin working on navbar

@@ -10,17 +10,16 @@ const NavBar = () => {
     <Menu secondary>
       <Menu.Item name="home" active={activeItem === "home"} onClick={handleItemClick} />
       <Menu.Item name="workouts" active={activeItem === "workouts"} onClick={handleItemClick} />
-      <Menu.Item name="Bicep Workouts" active={activeItem === "Bicep Workouts"} onClick={handleItemClick} />
-      <Menu.Item name="Back Workouts" active={activeItem === "Back Workouts"} onClick={handleItemClick} />
-      <Menu.Item name="Chest Workouts" active={activeItem === "Chest Workouts"} onClick={handleItemClick} />
-      <Menu.Item name="Tricep Workouts" active={activeItem === "Tricep Workouts"} onClick={handleItemClick} />
-      <Menu.Item name="Shoulder Workouts" active={activeItem === "Shoulder Workouts"} onClick={handleItemClick} />
-      <Menu.Item name="Leg Workouts" active={activeItem === "Leg Workouts"} onClick={handleItemClick} />
+      <Menu.Item name="biceps" active={activeItem === "biceps"} onClick={handleItemClick} />
+      <Menu.Item name="back" active={activeItem === "back"} onClick={handleItemClick} />
+      <Menu.Item name="chest" active={activeItem === "chest"} onClick={handleItemClick} />
+      <Menu.Item name="triceps" active={activeItem === "triceps"} onClick={handleItemClick} />
+      <Menu.Item name="shoulders" active={activeItem === "shoulders"} onClick={handleItemClick} />
+      <Menu.Item name="legs" active={activeItem === "legs"} onClick={handleItemClick} />
       <Menu.Menu position="right">
         <Menu.Item>
           <Input icon="search" placeholder="Search..." />
         </Menu.Item>
-        {/* <Menu.Item name="logout" active={activeItem === "logout"} onClick={handleItemClick} /> */}
       </Menu.Menu>
     </Menu>
   );

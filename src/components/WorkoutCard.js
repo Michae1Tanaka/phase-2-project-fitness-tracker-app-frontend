@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Card, Image } from "semantic-ui-react";
 import WorkoutDetails from "./WorkoutDetails";
 import WorkoutForm from "./WorkoutForm";
+import { WorkoutContext } from "../context/WorkoutContext";
 
-function WorkoutCard({ workout, setWorkoutsDisplay, workoutsDisplay }) {
+function WorkoutCard({ workout }) {
+  const { setWorkouts } = useContext(WorkoutContext);
   const primaryMusclesHitMap = workout.musclesHit.primary.join(", ");
   const secondaryMusclesHitMap = workout.musclesHit.secondary.join(", ");
   const [editButtonClicked, setEditButtonClicked] = useState(false);
@@ -34,7 +36,7 @@ function WorkoutCard({ workout, setWorkoutsDisplay, workoutsDisplay }) {
     })
       .then((r) => r.json())
       .then(() => {
-        setWorkoutsDisplay((prevWorkoutsDisplay) => {
+        setWorkouts((prevWorkoutsDisplay) => {
           return prevWorkoutsDisplay.filter((prevWorkout) => prevWorkout.id !== workout.id);
         });
       });
@@ -43,14 +45,7 @@ function WorkoutCard({ workout, setWorkoutsDisplay, workoutsDisplay }) {
   return (
     <Card style={{ border: "black 2px solid" }}>
       {editButtonClicked ? (
-        <WorkoutForm
-          workout={workout}
-          onUndo={handleEditButton}
-          setWorkoutsDisplay={setWorkoutsDisplay}
-          workoutsDisplay={workoutsDisplay}
-          inputText={inputText}
-          setInputText={setInputText}
-        />
+        <WorkoutForm workout={workout} onUndo={handleEditButton} inputText={inputText} setInputText={setInputText} />
       ) : (
         <>
           <Card.Content style={{ display: "flex", flexDirection: "column" }}>

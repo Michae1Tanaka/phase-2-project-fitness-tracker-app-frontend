@@ -1,37 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import WorkoutCard from "./WorkoutCard";
 import { v4 as uuid } from "uuid";
 import { Card } from "semantic-ui-react";
+import { WorkoutContext } from "../context/WorkoutContext";
 
 function WorkoutsPageHome() {
-  const [workoutsDisplay, setWorkoutsDisplay] = useState([]);
+  const { workouts } = useContext(WorkoutContext);
 
   const workoutGroups = ["Bicep", "Back", "Chest", "Tricep", "Shoulder", "Leg"].reduce((groups, group) => {
-    groups[group] = workoutsDisplay
+    groups[group] = workouts
       .filter((workout) => workout.muscleGroup === group)
-      .map((workout) => (
-        <WorkoutCard
-          key={uuid()}
-          workout={workout}
-          setWorkoutsDisplay={setWorkoutsDisplay}
-          workoutsDisplay={workoutsDisplay}
-        />
-      ));
+      .map((workout) => <WorkoutCard key={uuid()} workout={workout} />);
     return groups;
   }, {});
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:3000/workouts");
-        const workoutsFromFetch = await response.json();
-        setWorkoutsDisplay(workoutsFromFetch);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchData();
-  }, []);
 
   return (
     <div>

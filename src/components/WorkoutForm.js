@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button } from "semantic-ui-react";
+import { WorkoutContext } from "../context/WorkoutContext";
 
-function WorkoutForm({ workout, onUndo, inputText, setInputText, setWorkoutsDisplay, workoutsDisplay }) {
+function WorkoutForm({ workout, onUndo, inputText, setInputText }) {
+  const { setWorkouts } = useContext(WorkoutContext);
+
   function handleEditFormSubmit(e) {
     e.preventDefault();
     let primaryArray = Array.isArray(inputText.musclesHit.primary)
@@ -28,8 +31,8 @@ function WorkoutForm({ workout, onUndo, inputText, setInputText, setWorkoutsDisp
     })
       .then((r) => r.json())
       .then((updatedWorkout) => {
-        setWorkoutsDisplay((workoutsDisplay) =>
-          workoutsDisplay.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout))
+        setWorkouts((workouts) =>
+          workouts.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout))
         );
       });
   }
