@@ -127,6 +127,7 @@ function AddWorkout() {
           fluid
           required
           name="image"
+          type="url"
           label="Image"
           placeholder="Image Url"
           onChange={handleChange}
@@ -136,6 +137,7 @@ function AddWorkout() {
           fluid
           required
           name="date"
+          type="date"
           label="Date"
           placeholder="01/01/2023"
           onChange={handleChange}

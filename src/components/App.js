@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { WorkoutProvider } from "../context/WorkoutContextProvider";
 import AddWorkout from "./AddWorkoutForm";
+import HomePage from "./HomePage";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <WorkoutProvider>
         <NavBar />
         <Routes>
-          <Route exact path="/" element={<AddWorkout />} />
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/add-workout" element={<AddWorkout />} />
           <Route exact path="/workouts" element={<HomeWorkoutsPage />} />
         </Routes>
       </WorkoutProvider>
