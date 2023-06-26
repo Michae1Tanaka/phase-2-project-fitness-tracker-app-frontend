@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Card, Image } from "semantic-ui-react";
 import WorkoutDetails from "./WorkoutDetails";
-import WorkoutForm from "./WorkoutForm";
+import WorkoutForm from "./EditWorkoutForm";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 
 function WorkoutCard({ workout }) {
