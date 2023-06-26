@@ -26,7 +26,18 @@ function WorkoutCard({ workout, setWorkoutsDisplay, workoutsDisplay }) {
     setEditButtonClicked(!editButtonClicked);
   }
   function handleDeleteButton() {
-    console.log(":'(");
+    fetch(`http://localhost:3000/workouts/${workout.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((r) => r.json())
+      .then(() => {
+        setWorkoutsDisplay((prevWorkoutsDisplay) => {
+          return prevWorkoutsDisplay.filter((prevWorkout) => prevWorkout.id !== workout.id);
+        });
+      });
   }
 
   return (
