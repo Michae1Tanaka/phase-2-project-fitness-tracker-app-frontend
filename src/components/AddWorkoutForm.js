@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form } from "semantic-ui-react";
+import { WorkoutContext } from "../context/WorkoutContextProvider";
 
 const options = [
   { key: "w", text: "Select Muscle Group", value: "Select Muscle Group" },
@@ -12,6 +13,7 @@ const options = [
 ];
 
 function AddWorkout() {
+  const { setWorkouts, setFilteredWorkouts } = useContext(WorkoutContext);
   const [value, setValue] = useState({
     name: "",
     muscleGroup: "",
@@ -39,8 +41,31 @@ function AddWorkout() {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setValue(value);
+    console.log(value);
+    async function postNewWorkout() {
+      try {
+        const resp = await fetch("http://localhost:3000/workouts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(value),
+        });
+        const newWorkout = await resp.json();
+        console.log(newWorkout);
+        setFilteredWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
+        setWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
+      } catch {
+        console.error("Error,error");
+      }
+    }
+    postNewWorkout();
+  }
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group widths="equal">
         <Form.Input
           fluid

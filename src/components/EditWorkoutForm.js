@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 
-function WorkoutForm({ workout, onUndo, inputText, setInputText }) {
+function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
   const { setFilteredWorkouts } = useContext(WorkoutContext);
 
   function handleEditFormSubmit(e) {
@@ -159,4 +159,4 @@ function WorkoutForm({ workout, onUndo, inputText, setInputText }) {
   );
 }
 
-export default WorkoutForm;
+export default EditWorkoutForm;

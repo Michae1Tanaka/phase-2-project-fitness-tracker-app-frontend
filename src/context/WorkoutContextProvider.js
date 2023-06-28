@@ -21,7 +21,9 @@ const WorkoutProvider = ({ children }) => {
   }, []);
 
   return (
-    <WorkoutContext.Provider value={{ workouts, filteredWorkouts, setFilteredWorkouts, activeItem, setActiveItem }}>
+    <WorkoutContext.Provider
+      value={{ workouts, setWorkouts, filteredWorkouts, setFilteredWorkouts, activeItem, setActiveItem }}
+    >
       {children}
     </WorkoutContext.Provider>
   );

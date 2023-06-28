@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 import { Card } from "semantic-ui-react";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 
-function WorkoutsPageHome() {
+function WorkoutsPage() {
   const { activeItem, filteredWorkouts } = useContext(WorkoutContext);
 
   const workoutGroups = ["Bicep", "Back", "Chest", "Tricep", "Shoulder", "Leg"].reduce((groups, group) => {
@@ -29,4 +29,4 @@ function WorkoutsPageHome() {
   );
 }
 
-export default WorkoutsPageHome;
+export default WorkoutsPage;

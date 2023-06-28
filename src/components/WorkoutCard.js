@@ -5,9 +5,11 @@ import WorkoutForm from "./EditWorkoutForm";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 
 function WorkoutCard({ workout }) {
-  const { setFilteredWorkouts } = useContext(WorkoutContext);
-  const primaryMusclesHitMap = workout.musclesHit.primary.join(", ");
-  const secondaryMusclesHitMap = workout.musclesHit.secondary.join(", ");
+  const { setFilteredWorkouts, setWorkouts } = useContext(WorkoutContext);
+  const primaryMusclesHitMap = Array.isArray(workout.musclesHit.primary) ? workout.musclesHit.primary.join(", ") : "";
+  const secondaryMusclesHitMap = Array.isArray(workout.musclesHit.secondary)
+    ? workout.musclesHit.secondary.join(", ")
+    : "";
   const [editButtonClicked, setEditButtonClicked] = useState(false);
 
   const [inputText, setInputText] = useState({
@@ -27,6 +29,7 @@ function WorkoutCard({ workout }) {
   function handleEditButton() {
     setEditButtonClicked(!editButtonClicked);
   }
+
   function handleDeleteButton() {
     fetch(`http://localhost:3000/workouts/${workout.id}`, {
       method: "DELETE",
@@ -39,9 +42,11 @@ function WorkoutCard({ workout }) {
         setFilteredWorkouts((prevWorkoutsDisplay) => {
           return prevWorkoutsDisplay.filter((prevWorkout) => prevWorkout.id !== workout.id);
         });
+        setWorkouts((prevWorkouts) => {
+          return prevWorkouts.filter((prevWorkout) => prevWorkout.id !== workout.id);
+        });
       });
   }
-
   return (
     <Card style={{ border: "black 2px solid" }}>
       {editButtonClicked ? (
