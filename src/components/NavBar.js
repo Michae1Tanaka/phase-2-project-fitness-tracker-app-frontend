@@ -30,42 +30,42 @@ const NavBar = () => {
         as={Link}
         to="/workouts"
         name="Bicep"
-        active={activeItem === "biceps"}
+        active={activeItem === "Bicep"}
         onClick={() => handleItemClick("Bicep")}
       />
       <Menu.Item
         as={Link}
         to="/workouts"
         name="Back"
-        active={activeItem === "back"}
+        active={activeItem === "Back"}
         onClick={() => handleItemClick("Back")}
       />
       <Menu.Item
         as={Link}
         to="/workouts"
         name="Chest"
-        active={activeItem === "chest"}
+        active={activeItem === "Chest"}
         onClick={() => handleItemClick("Chest")}
       />
       <Menu.Item
         as={Link}
         to="/workouts"
         name="Tricep"
-        active={activeItem === "triceps"}
+        active={activeItem === "Tricep"}
         onClick={() => handleItemClick("Tricep")}
       />
       <Menu.Item
         as={Link}
         to="/workouts"
         name="Shoulder"
-        active={activeItem === "shoulders"}
+        active={activeItem === "Shoulder"}
         onClick={() => handleItemClick("Shoulder")}
       />
       <Menu.Item
         as={Link}
         to="/workouts"
         name="Leg"
-        active={activeItem === "legs"}
+        active={activeItem === "Leg"}
         onClick={() => handleItemClick("Leg")}
       />
       <Menu.Item
