@@ -11,8 +11,8 @@ const WorkoutProvider = ({ children }) => {
     const fetchWorkouts = async () => {
       try {
         const res = await fetch("http://localhost:3000/workouts");
-        const data = await res.json();
-        setWorkouts(data);
+        const workoutsData = await res.json();
+        setWorkouts(workoutsData);
       } catch (error) {
         console.error("Failed to fetch workouts", error);
       }
@@ -22,7 +22,14 @@ const WorkoutProvider = ({ children }) => {
 
   return (
     <WorkoutContext.Provider
-      value={{ workouts, setWorkouts, filteredWorkouts, setFilteredWorkouts, activeItem, setActiveItem }}
+      value={{
+        workouts,
+        setWorkouts,
+        filteredWorkouts,
+        setFilteredWorkouts,
+        activeItem,
+        setActiveItem,
+      }}
     >
       {children}
     </WorkoutContext.Provider>
