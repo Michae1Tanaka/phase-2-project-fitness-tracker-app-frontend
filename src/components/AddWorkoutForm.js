@@ -3,7 +3,6 @@ import { Form } from "semantic-ui-react";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 
 const options = [
-  { key: "w", text: "Select Muscle Group", value: "Select Muscle Group" },
   { key: "b", text: "Biceps", value: "Bicep" },
   { key: "a", text: "Back", value: "Back" },
   { key: "c", text: "Chest", value: "Chest" },
@@ -178,7 +177,7 @@ function AddWorkout() {
         onChange={handleChange}
         value={value.notes}
       />
-      <Form.Button>Submit</Form.Button>
+      <Form.Button color="green">Submit</Form.Button>
     </Form>
   );
 }

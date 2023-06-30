@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 import { Table, Segment, Image } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
+import AddSessionForm from "./AddSessionForm";
 
 function HomePage() {
   const { workouts } = useContext(WorkoutContext);
@@ -56,18 +57,21 @@ function HomePage() {
   }, []);
 
   return (
-    <Table celled selectable>
-      <Table.Header>
-        <Table.Row>{tableHeadersMap}</Table.Row>
-      </Table.Header>
-      {isLoading ? (
-        <Segment loading placeholder size="massive" style={{ minWidth: "775%" }}>
-          <Image src="/images/wireframe/paragraph.png" />
-        </Segment>
-      ) : (
-        <Table.Body>{homePageDataMap}</Table.Body>
-      )}
-    </Table>
+    <>
+      <Table celled selectable>
+        <Table.Header>
+          <Table.Row>{tableHeadersMap}</Table.Row>
+        </Table.Header>
+        {isLoading ? (
+          <Segment loading placeholder size="massive" style={{ minWidth: "775%" }}>
+            <Image src="/images/wireframe/paragraph.png" />
+          </Segment>
+        ) : (
+          <Table.Body>{homePageDataMap}</Table.Body>
+        )}
+      </Table>
+      <AddSessionForm />
+    </>
   );
 }
 

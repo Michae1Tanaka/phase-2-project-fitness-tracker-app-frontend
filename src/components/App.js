@@ -14,8 +14,8 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
-          <Route path="/add-workout" element={<AddWorkout />} />
           <Route path="/workouts" element={<WorkoutsPage />} />
+          <Route path="/add-workout" element={<AddWorkout />} />
         </Routes>
       </WorkoutProvider>
     </Router>
