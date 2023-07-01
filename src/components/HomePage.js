@@ -2,10 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 import { Table, Segment, Image } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
-import AddSessionForm from "./AddSessionForm";
+import EditSessionForm from "./EditSessionForm";
 
 function HomePage() {
-  const { workouts } = useContext(WorkoutContext);
   const [homePageData, setHomePageData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -70,7 +69,7 @@ function HomePage() {
           <Table.Body>{homePageDataMap}</Table.Body>
         )}
       </Table>
-      <AddSessionForm />
+      <EditSessionForm homePageData={homePageData} setHomePageData={setHomePageData} />
     </>
   );
 }
