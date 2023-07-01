@@ -23,18 +23,21 @@ function HomePage() {
 
   const homePageDataMap = homePageData.map((data) => {
     const volumeDifference = data.currentWorkoutVolume - data.lastWorkoutVolume;
-    let formattedVolume = 0;
-    if (volumeDifference > 0 || volumeDifference === 0) {
-      formattedVolume = volumeDifference;
-    } else {
-      formattedVolume = volumeDifference * -1;
-    }
+
     return (
       <Table.Row key={uuid()}>
         <Table.Cell>{data.muscleGroup}</Table.Cell>
         <Table.Cell>{data.currentWorkoutVolume}</Table.Cell>
         <Table.Cell>{data.lastWorkoutVolume}</Table.Cell>
-        <Table.Cell>{formattedVolume}</Table.Cell>
+        <Table.Cell
+          style={
+            volumeDifference < 0
+              ? { backgroundColor: "rgba(244, 67, 54, 0.2)" }
+              : { backgroundColor: "rgba(76, 175, 80, 0.2)" }
+          }
+        >
+          {volumeDifference}
+        </Table.Cell>
         <Table.Cell>{data.currentDate}</Table.Cell>
         <Table.Cell>{data.previousDate}</Table.Cell>
       </Table.Row>

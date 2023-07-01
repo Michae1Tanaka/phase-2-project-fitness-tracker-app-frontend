@@ -27,8 +27,6 @@ function EditSessionForm({ homePageData, setHomePageData }) {
     });
   }
 
-  console.log(homePageData);
-
   function displayEditSessionForm(e) {
     setAddSessionClicked(!addSessionClicked);
   }
