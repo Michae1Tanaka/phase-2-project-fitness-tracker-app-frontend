@@ -45,6 +45,25 @@ function AddWorkout() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    // Make a deep copy of the value object
+    let workoutData = JSON.parse(JSON.stringify(value));
+
+    // Ensure musclesHit.primary and musclesHit.secondary are arrays
+    ["primary", "secondary"].forEach((key) => {
+      let muscles = workoutData.musclesHit[key];
+
+      // If muscles is already an array, leave it as is
+      if (Array.isArray(muscles)) return;
+
+      // If muscles is a non-empty string, split it into an array
+      if (muscles && typeof muscles === "string") {
+        workoutData.musclesHit[key] = muscles.split(",");
+      } else {
+        // If muscles is not an array and not a non-empty string, make it an empty array
+        workoutData.musclesHit[key] = [];
+      }
+    });
     setValue(value);
     async function postNewWorkout() {
       try {
@@ -53,7 +72,7 @@ function AddWorkout() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(value),
+          body: JSON.stringify(workoutData),
         });
         const newWorkout = await resp.json();
         setFilteredWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
