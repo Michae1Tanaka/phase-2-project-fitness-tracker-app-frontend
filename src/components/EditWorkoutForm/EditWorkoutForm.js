@@ -4,7 +4,7 @@ import { WorkoutContext } from "../../context/WorkoutContextProvider";
 import "./EditWorkoutForm.css";
 
 function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
-  const { setFilteredWorkouts } = useContext(WorkoutContext);
+  const { setFilteredWorkouts, setWorkouts } = useContext(WorkoutContext);
 
   function handleEditFormSubmit(e) {
     e.preventDefault();
@@ -32,6 +32,9 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
     })
       .then((r) => r.json())
       .then((updatedWorkout) => {
+        setWorkouts((prevWorkouts) =>
+          prevWorkouts.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout))
+        );
         setFilteredWorkouts((workouts) =>
           workouts.map((workout) => (workout.id === updatedWorkout.id ? updatedWorkout : workout))
         );
@@ -76,7 +79,7 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
             <label>Workout Name</label>
             <input value={inputText.name} onChange={onEditChange} type="text" name="name" placeholder="Workout Name" />
           </div>
-          <div>
+          <div className="select">
             <label>Muscle Group</label>
             <select value={inputText.muscleGroup} onChange={onEditChange} name="muscleGroup">
               <option value="">Select muscle group</option>

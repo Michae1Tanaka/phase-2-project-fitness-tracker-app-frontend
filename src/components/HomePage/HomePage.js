@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Table, Segment, Image, Container, Header } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
 import EditSessionForm from "../EditSessionForm/EditSessionForm";

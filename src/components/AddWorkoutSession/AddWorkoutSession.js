@@ -73,7 +73,7 @@ function AddWorkoutSession() {
           required
           name="currentWorkoutVolume"
           label="Current Muscle Group Volume"
-          placeholder="Volume formula: Workouts count x Total amount of sets x Total amount of reps x Total weight (for chosen muscle group)"
+          placeholder="Sum of (Weight x Sets x Reps) per workout"
           value={formData.currentWorkoutVolume}
           onChange={handleChange}
         />
@@ -92,7 +92,7 @@ function AddWorkoutSession() {
           required
           name="lastWorkoutVolume"
           label="Previous Muscle Group Volume"
-          placeholder="Volume formula: Workouts count x Total amount of sets x Total amount of reps x Total weight (for chosen muscle group)"
+          placeholder="Sum of (Weight x Sets x Reps) per workout"
           value={formData.lastWorkoutVolume}
           onChange={handleChange}
         />
