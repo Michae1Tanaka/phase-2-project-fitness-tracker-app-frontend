@@ -1,4 +1,5 @@
-#root>div.field>.ui.green.button {
+#root>div.field>.ui.green.button,
+#root>form>div.field>button {
     display: block;
     margin-left: auto;
     margin-right: auto

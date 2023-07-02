@@ -58,6 +58,21 @@ function AddWorkout() {
         const newWorkout = await resp.json();
         setFilteredWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
         setWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
+        setValue({
+          name: "",
+          muscleGroup: "",
+          weight: "",
+          reps: "",
+          sets: "",
+          duration: "",
+          date: "",
+          notes: [],
+          image: "",
+          musclesHit: {
+            primary: [],
+            secondary: [],
+          },
+        });
       } catch {
         console.error("Error,error");
       }

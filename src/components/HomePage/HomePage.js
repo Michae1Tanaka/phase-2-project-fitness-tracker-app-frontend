@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Table, Segment, Image, Container, Header } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
 import EditSessionForm from "../EditSessionForm/EditSessionForm";
+import { WorkoutContext } from "../../context/WorkoutContextProvider";
 import "./HomePage.css";
 
 function HomePage() {
-  const [homePageSessions, setHomePageSessions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { homePageSessions, isLoading } = useContext(WorkoutContext);
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -50,20 +50,6 @@ function HomePage() {
     );
   });
 
-  useEffect(() => {
-    const fetchVolume = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/sessions");
-        const sessionsData = await res.json();
-        setHomePageSessions(sessionsData);
-        setIsLoading(!isLoading);
-      } catch (error) {
-        console.error("Failed to fetch Sessions data", error);
-      }
-    };
-    fetchVolume();
-  }, []);
-
   return (
     <>
       <Container text>
@@ -84,7 +70,7 @@ function HomePage() {
           <Table.Body>{homePageSessionsMap}</Table.Body>
         )}
       </Table>
-      <EditSessionForm homePageSessions={homePageSessions} setHomePageSessions={setHomePageSessions} />
+      <EditSessionForm />
     </>
   );
 }

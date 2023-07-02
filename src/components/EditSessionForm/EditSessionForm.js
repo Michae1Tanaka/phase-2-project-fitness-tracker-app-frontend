@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form } from "semantic-ui-react";
+import { WorkoutContext } from "../../context/WorkoutContextProvider";
+import "./EditSessionForm.css";
 
-function EditSessionForm({ homePageSessions, setHomePageSessions }) {
+function EditSessionForm() {
+  const { homePageSessions, setHomePageSessions } = useContext(WorkoutContext);
+
   const [addSessionClicked, setAddSessionClicked] = useState(false);
   const [sessionInput, setSessionInput] = useState({
     muscleGroup: "",
@@ -39,7 +43,7 @@ function EditSessionForm({ homePageSessions, setHomePageSessions }) {
     const existingSession = homePageSessions.find((session) => session.muscleGroup === sessionInput.muscleGroup);
 
     if (!existingSession) {
-      console.error("No existing session found for this muscle group.");
+      alert("No existing session found for this muscle group.");
       return;
     }
 
@@ -119,7 +123,7 @@ function EditSessionForm({ homePageSessions, setHomePageSessions }) {
           color="green"
           style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
         >
-          Edit Workout Session
+          Update Workout Session
         </Form.Button>
       )}
     </>
