@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Table, Segment, Image, Container, Header } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
 import EditSessionForm from "../EditSessionForm/EditSessionForm";
+import "./HomePage.css";
 
 function HomePage() {
   const [homePageSessions, setHomePageSessions] = useState([]);
@@ -65,18 +66,18 @@ function HomePage() {
 
   return (
     <>
-      <Container text style={{ marginTop: "2em" }}>
+      <Container text>
         <Header as="h1" color="blue" textAlign="center">
           Welcome to Your Fitness Tracker
         </Header>
-        <p style={{ fontSize: "1.33em" }}>Keep track of your workouts and progress over time. Let's get started!</p>
+        <p>Keep track of your workouts and progress over time. Let's get started!</p>
       </Container>
       <Table celled selectable>
         <Table.Header>
           <Table.Row>{tableHeadersMap}</Table.Row>
         </Table.Header>
         {isLoading ? (
-          <Segment loading placeholder size="massive" style={{ minWidth: "775%" }}>
+          <Segment loading placeholder size="massive">
             <Image src="/images/wireframe/paragraph.png" />
           </Segment>
         ) : (

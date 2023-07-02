@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Button } from "semantic-ui-react";
 import { WorkoutContext } from "../../context/WorkoutContextProvider";
+import "./EditWorkoutForm.css";
 
 function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
   const { setFilteredWorkouts } = useContext(WorkoutContext);
@@ -68,18 +69,14 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
 
   return (
     <>
-      <h2 style={{ textAlign: "center" }}>What would you like to change?</h2>
-      <form
-        onSubmit={handleEditFormSubmit}
-        className="ui form"
-        style={{ marginLeft: "2px", marginRight: "2px", marginBottom: "2px" }}
-      >
-        <div className="field" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ width: "48%" }}>
+      <h2>What would you like to change?</h2>
+      <form onSubmit={handleEditFormSubmit} className="ui form">
+        <div className="field">
+          <div>
             <label>Workout Name</label>
             <input value={inputText.name} onChange={onEditChange} type="text" name="name" placeholder="Workout Name" />
           </div>
-          <div style={{ width: "48%" }}>
+          <div>
             <label>Muscle Group</label>
             <select value={inputText.muscleGroup} onChange={onEditChange} name="muscleGroup">
               <option value="">Select muscle group</option>
@@ -118,8 +115,8 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
           <label>Image</label>
           <input value={inputText.image} onChange={onEditChange} type="text" name="image" placeholder="Image Url" />
         </div>
-        <div className="field" style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ width: "20%" }}>
+        <div className="field">
+          <div className="numbered-inputs">
             <label>Weight</label>
             <input
               value={inputText.weight}
@@ -129,15 +126,15 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
               placeholder="Weight"
             ></input>
           </div>
-          <div style={{ width: "20%" }}>
+          <div className="numbered-inputs">
             <label>Reps</label>
             <input value={inputText.reps} onChange={onEditChange} type="number" name="reps" placeholder="Reps"></input>
           </div>
-          <div style={{ width: "20%" }}>
+          <div className="numbered-inputs">
             <label>Sets</label>
             <input value={inputText.sets} onChange={onEditChange} type="number" name="sets" placeholder="Sets"></input>
           </div>
-          <div style={{ width: "20%" }}>
+          <div className="numbered-inputs">
             <label>Duration</label>
             <input
               value={inputText.duration}
@@ -149,10 +146,10 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
           </div>
         </div>
         <div className="ui two buttons">
-          <Button basic color="green" style={{ border: "2px solid" }} type="submit">
+          <Button basic color="green" type="submit">
             <strong>Submit</strong>
           </Button>
-          <Button onClick={onUndo} basic color="red" style={{ border: "2px solid" }}>
+          <Button onClick={onUndo} basic color="red">
             <strong>Undo Changes</strong>
           </Button>
         </div>

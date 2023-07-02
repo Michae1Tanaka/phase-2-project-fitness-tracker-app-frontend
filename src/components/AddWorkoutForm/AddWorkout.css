@@ -1,0 +1,5 @@
+#root>form>div:nth-child(5)>button {
+    display: block;
+    margin-right: auto;
+    margin-left: auto
+}

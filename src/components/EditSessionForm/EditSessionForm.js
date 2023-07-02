@@ -116,6 +116,7 @@ function EditSessionForm({ homePageSessions, setHomePageSessions }) {
       ) : (
         <Form.Button
           onClick={displayEditSessionForm}
+          color="green"
           style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}
         >
           Edit Workout Session

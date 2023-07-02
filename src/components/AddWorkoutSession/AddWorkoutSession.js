@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Button } from "semantic-ui-react";
+import "./AddWorkoutSession.css";
 
 function AddWorkoutSession() {
   const options = [
@@ -26,19 +27,23 @@ function AddWorkoutSession() {
       </Form.Group>
       <Form.Group unstackable widths={2}>
         <Form.Input
+          required
           label="Current Muscle Group Volume"
-          placeholder="Volume formula: Workouts count x Sets count x Reps count x Weight (for each muscle group)"
+          placeholder="Volume formula: Workouts count x Total amount of sets x Total amount of reps x Total weight (for chosen muscle group)"
         />
-        <Form.Input type="date" label="Date Of Current Workout" placeholder="Date Format: yyyy-mm-dd" />
+        <Form.Input required type="date" label="Date Of Current Workout" placeholder="Date Format: yyyy-mm-dd" />
       </Form.Group>
       <Form.Group widths={2}>
         <Form.Input
+          required
           label="Previous Muscle Group Volume"
-          placeholder="Volume formula: Workouts count x Sets count x Reps count x Weight (for each muscle group)"
+          placeholder="Volume formula: Workouts count x Total amount of sets x Total amount of reps x Total weight (for chosen muscle group)"
         />
-        <Form.Input type="date" label="Date Of Previous Workout" placeholder="Date Format: yyyy-mm-dd" />
+        <Form.Input required type="date" label="Date Of Previous Workout" placeholder="Date Format: yyyy-mm-dd" />
       </Form.Group>
-      <Button type="submit">Submit</Button>
+      <Button color="green" type="submit">
+        Submit
+      </Button>
     </Form>
   );
 }

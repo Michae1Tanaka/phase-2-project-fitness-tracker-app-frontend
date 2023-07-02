@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Form } from "semantic-ui-react";
 import { WorkoutContext } from "../../context/WorkoutContextProvider";
+import "./AddWorkout.css";
 
 const options = [
   { key: "b", text: "Biceps", value: "Bicep" },
@@ -9,7 +10,7 @@ const options = [
   { key: "t", text: "Triceps", value: "Tricep" },
   { key: "s", text: "Shoulders", value: "Shoulder" },
   { key: "l", text: "Legs", value: "Leg" },
-  { key: "f", text: "Forearms", value: "Forearms" },
+  { key: "f", text: "Forearms", value: "Forearm" },
   { key: "co", text: "Core", value: "Core" },
 ];
 
@@ -45,7 +46,6 @@ function AddWorkout() {
   function handleSubmit(e) {
     e.preventDefault();
     setValue(value);
-    console.log(value);
     async function postNewWorkout() {
       try {
         const resp = await fetch("http://localhost:3000/workouts", {
@@ -56,7 +56,6 @@ function AddWorkout() {
           body: JSON.stringify(value),
         });
         const newWorkout = await resp.json();
-        console.log(newWorkout);
         setFilteredWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
         setWorkouts((prevWorkouts) => [...prevWorkouts, newWorkout]);
       } catch {

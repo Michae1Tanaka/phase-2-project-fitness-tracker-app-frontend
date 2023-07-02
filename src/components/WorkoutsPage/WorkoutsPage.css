@@ -12,3 +12,7 @@ h1 {
     display: "block";
     margin: "0 auto"
 }
+
+.ui.three.cards {
+    margin: 0px
+}

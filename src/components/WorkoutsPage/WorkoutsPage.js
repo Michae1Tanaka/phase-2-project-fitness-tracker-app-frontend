@@ -20,7 +20,7 @@ function WorkoutsPage() {
   );
 
   return (
-    <div>
+    <div id="workoutsPage">
       {Object.keys(workoutGroups).map((group) => (
         <div key={uuid()}>
           {(activeItem === "workouts" || activeItem.toLowerCase() === group.toLowerCase()) &&

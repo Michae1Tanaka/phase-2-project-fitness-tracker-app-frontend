@@ -1,0 +1,15 @@
+#root>div.ui.text.container {
+    margin-top: 2em
+}
+
+#root>table>div.ui.massive.loading.placeholder.segment {
+    min-width: 760%
+}
+
+p {
+    font-size: 1.33em
+}
+
+.ui.celled.selectable.table {
+    text-align: center
+}

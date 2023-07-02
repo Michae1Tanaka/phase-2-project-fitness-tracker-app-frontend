@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Menu } from "semantic-ui-react";
 import { WorkoutContext } from "../../context/WorkoutContextProvider";
 import { Link } from "react-router-dom";
-
+import "./NavBar.css";
 const NavBar = () => {
   const { workouts, setFilteredWorkouts, activeItem, setActiveItem } = useContext(WorkoutContext);
 

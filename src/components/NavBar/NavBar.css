@@ -1,0 +1,8 @@
+.ui.secondary.menu {
+    justify-content: space-between;
+}
+
+.item {
+    border: 2px solid black;
+    background-color: grey
+}
