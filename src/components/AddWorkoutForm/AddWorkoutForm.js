@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Form } from "semantic-ui-react";
-import { WorkoutContext } from "../context/WorkoutContextProvider";
+import { WorkoutContext } from "../../context/WorkoutContextProvider";
 
 const options = [
   { key: "b", text: "Biceps", value: "Bicep" },

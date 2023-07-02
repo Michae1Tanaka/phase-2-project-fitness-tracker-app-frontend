@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Menu } from "semantic-ui-react";
-import { WorkoutContext } from "../context/WorkoutContextProvider";
+import { WorkoutContext } from "../../context/WorkoutContextProvider";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {

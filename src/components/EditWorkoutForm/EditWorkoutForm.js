@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Button } from "semantic-ui-react";
-import { WorkoutContext } from "../context/WorkoutContextProvider";
+import { WorkoutContext } from "../../context/WorkoutContextProvider";
 
 function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
   const { setFilteredWorkouts } = useContext(WorkoutContext);

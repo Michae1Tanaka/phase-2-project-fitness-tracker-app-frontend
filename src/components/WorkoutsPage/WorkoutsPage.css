@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+}
+
+.ui.placeholder.segment {
+    margin-top: 5%;
+    max-height: 2rem
+}
+
+.ui.green.button {
+    max-width: "20%";
+    display: "block";
+    margin: "0 auto"
+}

@@ -65,7 +65,7 @@ function EditSessionForm({ homePageSessions, setHomePageSessions }) {
           currentWorkoutVolume: "",
           currentDate: "",
         });
-
+        setAddSessionClicked(!addSessionClicked);
         setHomePageSessions((prevSessions) =>
           prevSessions.map((session) => {
             return session.id === updatedSessionFromServer.id ? updatedSessionFromServer : session;

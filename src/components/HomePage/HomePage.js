@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Segment, Image, Container, Header } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
-import EditSessionForm from "./EditSessionForm";
+import EditSessionForm from "../EditSessionForm/EditSessionForm";
 
 function HomePage() {
   const [homePageSessions, setHomePageSessions] = useState([]);

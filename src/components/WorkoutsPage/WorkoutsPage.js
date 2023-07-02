@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import WorkoutCard from "./WorkoutCard";
+import WorkoutCard from "../WorkoutCard/WorkoutCard";
 import { v4 as uuid } from "uuid";
 import { Button, Card, Segment, Header, Icon } from "semantic-ui-react";
-import { WorkoutContext } from "../context/WorkoutContextProvider";
+import { WorkoutContext } from "../../context/WorkoutContextProvider";
 import { Link } from "react-router-dom";
+import "./WorkoutsPage.css";
 
 function WorkoutsPage() {
   const { activeItem, filteredWorkouts } = useContext(WorkoutContext);
@@ -24,23 +25,18 @@ function WorkoutsPage() {
         <div key={uuid()}>
           {(activeItem === "workouts" || activeItem.toLowerCase() === group.toLowerCase()) &&
           workoutGroups[group].length > 0 ? (
-            <h1 style={{ textAlign: "center" }}>{group} Workouts </h1>
+            <h1>{group} Workouts </h1>
           ) : null}
           <Card.Group itemsPerRow="3">{workoutGroups[group]}</Card.Group>
           {(activeItem.toLowerCase() === group.toLowerCase() || activeItem.toLowerCase() === "workouts") &&
           workoutGroups[group].length === 0 ? (
             <>
-              <Segment placeholder style={{ marginTop: "60px" }}>
+              <Segment placeholder>
                 <Header icon>
                   <Icon name="ban" />
                   There are no {group.toLowerCase()} workouts saved.
                 </Header>
-                <Button
-                  as={Link}
-                  to={"/add-workout"}
-                  color="green"
-                  style={{ maxWidth: "20%", display: "block", margin: "0 auto" }}
-                >
+                <Button as={Link} to={"/add-workout"} color="green">
                   Add Workout
                 </Button>
               </Segment>
