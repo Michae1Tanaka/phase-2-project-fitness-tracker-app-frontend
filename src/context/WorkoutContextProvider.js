@@ -13,7 +13,7 @@ const WorkoutProvider = ({ children }) => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const res = await fetch("http://localhost:3000/workouts");
+        const res = await fetch("https://json-server-api-fitness-tracker.onrender.com/workouts");
         const workoutsData = await res.json();
         setWorkouts(workoutsData);
       } catch (error) {
@@ -26,13 +26,15 @@ const WorkoutProvider = ({ children }) => {
   useEffect(() => {
     const fetchHomePageSessions = async () => {
       try {
-        const res = await fetch("http://localhost:3000/sessions");
+        setIsLoading(true);
+        const res = await fetch("https://json-server-api-fitness-tracker.onrender.com/sessions");
         const sessionsData = await res.json();
         setHomePageSessions(sessionsData);
         setAllSessions(sessionsData);
-        setIsLoading(!isLoading);
       } catch (error) {
         console.error("Failed to fetch Sessions data", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchHomePageSessions();

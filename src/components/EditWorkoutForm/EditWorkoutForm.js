@@ -23,7 +23,7 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
       },
     };
 
-    fetch(`http://localhost:3000/workouts/${workout.id}`, {
+    fetch(`https://json-server-api-fitness-tracker.onrender.com/workouts/${workout.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
         secondary: workout.musclesHit.secondary,
       },
     });
-  }, [workout]);
+  }, [workout, setInputText]);
 
   function onEditChange(e) {
     const { name, value } = e.target;

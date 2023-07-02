@@ -48,7 +48,7 @@ function AddWorkout() {
     setValue(value);
     async function postNewWorkout() {
       try {
-        const resp = await fetch("http://localhost:3000/workouts", {
+        const resp = await fetch("https://json-server-api-fitness-tracker.onrender.com/workouts", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

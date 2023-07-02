@@ -32,7 +32,7 @@ function WorkoutCard({ workout }) {
   }
 
   function handleDeleteButton() {
-    fetch(`http://localhost:3000/workouts/${workout.id}`, {
+    fetch(`https://json-server-api-fitness-tracker.onrender.com/workouts/${workout.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

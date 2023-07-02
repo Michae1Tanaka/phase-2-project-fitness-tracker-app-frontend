@@ -55,7 +55,7 @@ function EditSessionForm() {
       currentDate: sessionInput.currentDate,
     };
 
-    fetch(`http://localhost:3000/sessions/${existingSession.id}`, {
+    fetch(`https://json-server-api-fitness-tracker.onrender.com/sessions/${existingSession.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
