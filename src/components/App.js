@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { WorkoutProvider } from "../context/WorkoutContextProvider";
 import AddWorkout from "./AddWorkoutForm";
 import HomePage from "./HomePage";
+import AddWorkoutSession from "./AddWorkoutSession";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/workouts" element={<WorkoutsPage />} />
           <Route path="/add-workout" element={<AddWorkout />} />
+          <Route path="/add-session" element={<AddWorkoutSession />} />
         </Routes>
       </WorkoutProvider>
     </Router>

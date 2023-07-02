@@ -9,6 +9,8 @@ const options = [
   { key: "t", text: "Triceps", value: "Tricep" },
   { key: "s", text: "Shoulders", value: "Shoulder" },
   { key: "l", text: "Legs", value: "Leg" },
+  { key: "f", text: "Forearms", value: "Forearms" },
+  { key: "co", text: "Core", value: "Core" },
 ];
 
 function AddWorkout() {

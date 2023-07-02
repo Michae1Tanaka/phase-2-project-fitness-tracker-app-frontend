@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Input, Menu } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { WorkoutContext } from "../context/WorkoutContextProvider";
 import { Link } from "react-router-dom";
 
@@ -70,16 +70,32 @@ const NavBar = () => {
       />
       <Menu.Item
         as={Link}
+        to="/workouts"
+        name="Forearm"
+        active={activeItem === "Forearm"}
+        onClick={() => handleItemClick("Forearm")}
+      />
+      <Menu.Item
+        as={Link}
+        to="/workouts"
+        name="Core"
+        active={activeItem === "Core"}
+        onClick={() => handleItemClick("Core")}
+      />
+      <Menu.Item
+        as={Link}
         to="/add-workout"
         name="add workout"
         active={activeItem === "add workout"}
         onClick={() => handleItemClick("add workout")}
       />
-      <Menu.Menu position="right">
-        <Menu.Item>
-          <Input icon="search" placeholder="Search..." />
-        </Menu.Item>
-      </Menu.Menu>
+      <Menu.Item
+        as={Link}
+        to="/add-session"
+        name="add session"
+        active={activeItem === "add session"}
+        onClick={() => handleItemClick("add session")}
+      />
     </Menu>
   );
 };

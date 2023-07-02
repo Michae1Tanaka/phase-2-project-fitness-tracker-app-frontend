@@ -89,6 +89,8 @@ function EditWorkoutForm({ workout, onUndo, inputText, setInputText }) {
               <option value="Chest">Chest</option>
               <option value="Tricep">Triceps</option>
               <option value="Leg">Legs</option>
+              <option value="Forearms">Forearms</option>
+              <option value="Core">Core</option>
             </select>
           </div>
         </div>

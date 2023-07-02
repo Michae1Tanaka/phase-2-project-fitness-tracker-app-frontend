@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 
-function EditSessionForm({ homePageData, setHomePageData }) {
+function EditSessionForm({ homePageSessions, setHomePageSessions }) {
   const [addSessionClicked, setAddSessionClicked] = useState(false);
   const [sessionInput, setSessionInput] = useState({
     muscleGroup: "",
@@ -16,6 +16,8 @@ function EditSessionForm({ homePageData, setHomePageData }) {
     { key: "t", text: "Triceps", value: "Tricep" },
     { key: "s", text: "Shoulders", value: "Shoulder" },
     { key: "l", text: "Legs", value: "Leg" },
+    { key: "f", text: "Forearms", value: "Forearms" },
+    { key: "co", text: "Core", value: "Core" },
   ];
 
   function handleInputChange(e, { name, value }) {
@@ -34,7 +36,7 @@ function EditSessionForm({ homePageData, setHomePageData }) {
   function handleEditWorkoutSessionSubmit(e) {
     e.preventDefault();
 
-    const existingSession = homePageData.find((session) => session.muscleGroup === sessionInput.muscleGroup);
+    const existingSession = homePageSessions.find((session) => session.muscleGroup === sessionInput.muscleGroup);
 
     if (!existingSession) {
       console.error("No existing session found for this muscle group.");
@@ -49,7 +51,7 @@ function EditSessionForm({ homePageData, setHomePageData }) {
       currentDate: sessionInput.currentDate,
     };
 
-    fetch(`http://localhost:3000/volume/${existingSession.id}`, {
+    fetch(`http://localhost:3000/sessions/${existingSession.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +66,7 @@ function EditSessionForm({ homePageData, setHomePageData }) {
           currentDate: "",
         });
 
-        setHomePageData((prevSessions) =>
+        setHomePageSessions((prevSessions) =>
           prevSessions.map((session) => {
             return session.id === updatedSessionFromServer.id ? updatedSessionFromServer : session;
           })

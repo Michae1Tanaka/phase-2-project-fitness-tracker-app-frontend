@@ -1,12 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
-import { WorkoutContext } from "../context/WorkoutContextProvider";
-import { Table, Segment, Image } from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import { Table, Segment, Image, Container, Header } from "semantic-ui-react";
 import { v4 as uuid } from "uuid";
 import EditSessionForm from "./EditSessionForm";
 
 function HomePage() {
-  const [homePageData, setHomePageData] = useState([]);
+  const [homePageSessions, setHomePageSessions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  }
 
   const tableHeaders = [
     "Muscle Group",
@@ -21,14 +25,15 @@ function HomePage() {
     return <Table.HeaderCell key={uuid()}>{header}</Table.HeaderCell>;
   });
 
-  const homePageDataMap = homePageData.map((data) => {
-    const volumeDifference = data.currentWorkoutVolume - data.lastWorkoutVolume;
-
+  const homePageSessionsMap = homePageSessions.map((session) => {
+    const volumeDifference = session.currentWorkoutVolume - session.lastWorkoutVolume;
+    const formattedCurrentDate = formatDate(session.currentDate);
+    const formattedPreviousDate = formatDate(session.previousDate);
     return (
       <Table.Row key={uuid()}>
-        <Table.Cell>{data.muscleGroup}</Table.Cell>
-        <Table.Cell>{data.currentWorkoutVolume}</Table.Cell>
-        <Table.Cell>{data.lastWorkoutVolume}</Table.Cell>
+        <Table.Cell>{session.muscleGroup}</Table.Cell>
+        <Table.Cell>{session.currentWorkoutVolume}</Table.Cell>
+        <Table.Cell>{session.lastWorkoutVolume}</Table.Cell>
         <Table.Cell
           style={
             volumeDifference < 0
@@ -38,8 +43,8 @@ function HomePage() {
         >
           {volumeDifference}
         </Table.Cell>
-        <Table.Cell>{data.currentDate}</Table.Cell>
-        <Table.Cell>{data.previousDate}</Table.Cell>
+        <Table.Cell>{formattedCurrentDate}</Table.Cell>
+        <Table.Cell>{formattedPreviousDate}</Table.Cell>
       </Table.Row>
     );
   });
@@ -47,12 +52,12 @@ function HomePage() {
   useEffect(() => {
     const fetchVolume = async () => {
       try {
-        const res = await fetch("http://localhost:3000/volume");
-        const volumeData = await res.json();
-        setHomePageData(volumeData);
+        const res = await fetch("http://localhost:3000/sessions");
+        const sessionsData = await res.json();
+        setHomePageSessions(sessionsData);
         setIsLoading(!isLoading);
       } catch (error) {
-        console.error("Failed to fetch Volume data", error);
+        console.error("Failed to fetch Sessions data", error);
       }
     };
     fetchVolume();
@@ -60,6 +65,12 @@ function HomePage() {
 
   return (
     <>
+      <Container text style={{ marginTop: "2em" }}>
+        <Header as="h1" color="blue" textAlign="center">
+          Welcome to Your Fitness Tracker
+        </Header>
+        <p style={{ fontSize: "1.33em" }}>Keep track of your workouts and progress over time. Let's get started!</p>
+      </Container>
       <Table celled selectable>
         <Table.Header>
           <Table.Row>{tableHeadersMap}</Table.Row>
@@ -69,10 +80,10 @@ function HomePage() {
             <Image src="/images/wireframe/paragraph.png" />
           </Segment>
         ) : (
-          <Table.Body>{homePageDataMap}</Table.Body>
+          <Table.Body>{homePageSessionsMap}</Table.Body>
         )}
       </Table>
-      <EditSessionForm homePageData={homePageData} setHomePageData={setHomePageData} />
+      <EditSessionForm homePageSessions={homePageSessions} setHomePageSessions={setHomePageSessions} />
     </>
   );
 }

@@ -8,12 +8,15 @@ import { Link } from "react-router-dom";
 function WorkoutsPage() {
   const { activeItem, filteredWorkouts } = useContext(WorkoutContext);
 
-  const workoutGroups = ["Bicep", "Back", "Chest", "Tricep", "Shoulder", "Leg"].reduce((groups, group) => {
-    groups[group] = filteredWorkouts
-      .filter((workout) => workout.muscleGroup === group)
-      .map((workout) => <WorkoutCard key={uuid()} workout={workout} />);
-    return groups;
-  }, {});
+  const workoutGroups = ["Bicep", "Back", "Chest", "Tricep", "Shoulder", "Leg", "Forearm", "Core"].reduce(
+    (groups, group) => {
+      groups[group] = filteredWorkouts
+        .filter((workout) => workout.muscleGroup === group)
+        .map((workout) => <WorkoutCard key={uuid()} workout={workout} />);
+      return groups;
+    },
+    {}
+  );
 
   return (
     <div>
@@ -24,7 +27,8 @@ function WorkoutsPage() {
             <h1 style={{ textAlign: "center" }}>{group} Workouts </h1>
           ) : null}
           <Card.Group itemsPerRow="3">{workoutGroups[group]}</Card.Group>
-          {activeItem.toLowerCase() === group.toLowerCase() && workoutGroups[group].length === 0 ? (
+          {(activeItem.toLowerCase() === group.toLowerCase() || activeItem.toLowerCase() === "workouts") &&
+          workoutGroups[group].length === 0 ? (
             <>
               <Segment placeholder style={{ marginTop: "60px" }}>
                 <Header icon>
